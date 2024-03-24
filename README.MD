@@ -20,7 +20,7 @@ sudo apt upgrade
 
 ### Configure SSH & VNC:
 ``
-`sudo raspi-config
+sudo raspi-config
 ```
 
 ### Check for firmware update:
@@ -28,7 +28,11 @@ sudo apt upgrade
 sudo rpi-eepram-update
 ```
 
-## edit `sudo nano /boot/firmware/config.txt`
+## edit `config.txt`
+
+```
+sudo nano /boot/firmware/config.txt
+```
 
 `dtparam=pciex1`
 
