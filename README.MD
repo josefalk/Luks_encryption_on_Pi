@@ -10,7 +10,8 @@ Encrypting an NVMe drive on a Raspberry Pi is a good way to protect your data in
 
 ### Check for updates:
 ```
-sudo apt update```
+sudo apt update
+```
 
 ### Check for upgrades:
 `sudo apt upgrade`
