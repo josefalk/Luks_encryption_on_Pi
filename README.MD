@@ -1,12 +1,17 @@
 # Project Title
 
-Encrypt Raspberry PI 5 NVMe. PI boot form MicroSD card.
+Encrypt Home Directory in Raspberry PI 5 NVMe.
+
+The setup ment to have a sperate partition for the home directory in the same NVMe disk. 
 
 ## Description
 
-Encrypting an NVMe drive on a Raspberry Pi is a good way to protect your data in case the drive is lost or stolen. You can use the Linux built-in encryption tools to achieve this. Here's a step-by-step guide to encrypt your NVMe drive on a Raspberry Pi:
+Encrypting an NVMe drive on a Raspberry Pi is a good way to protect your data in case the drive is lost or stolen. You can use the Linux built-in encryption tools to achieve this. Here's a step-by-step guide to encrypt your NVMe drive on a Raspberry Pi.
 
-## Update and remote:
+To avoid removing the NVMe every time you install PI OS on it, I prepared the SD card, Install PI OS in it, I insert it (Pi will boot from SD by default) and then I can install PI OS on NVMe drive and partition it in the same time.
+
+### Update and remote:
+
 
 ### Check for updates:
 ```
@@ -28,7 +33,7 @@ sudo raspi-config
 sudo rpi-eepram-update
 ```
 
-## edit `config.txt`
+### edit `config.txt`
 
 ```
 sudo nano /boot/firmware/config.txt
@@ -53,19 +58,19 @@ sudo apt-get install cryptsetup
 ## Partition the NVMe Drive: 
 If the NVMe drive is not already partitioned, you can use a partitioning tool such as fdisk or parted to create partitions on the drive.
 
-## Encrypt Partition:
+### Encrypt Partition:
 
 ```
 sudo cryptsetup luksFormat /dev/nvme0n1p3
 ```
 
 
-## Open the Encrypted partition:
+### Open the Encrypted partition:
 ```
 sudo cryptsetup open /dev/nvme0n1p3 encrypted_home
 ```
 
-## Create File System:
+### Create File System:
 ```
 sudo mkfs.ext4 /dev/mapper/encrypted_home
 ```
@@ -79,7 +84,7 @@ sudo mount /dev/mapper/encrypted_home /mnt/encrypted_home
 
 ```
 
-## Configure Automatic Mounting:
+### Configure Automatic Mounting:
 
 To automatically mount the encrypted partition on boot, you'll need to add an entry to `/etc/crypttab`:
 
@@ -90,7 +95,7 @@ sudo nano /etc/crypttab
 /dev/mapper/encrypted_home /home ext4 defaults 0 2
 ```
 
-## Unmount and Test:
+### Unmount and Test:
 ```
 sudo umount /mnt/encrypted_home
 ```
@@ -101,7 +106,7 @@ sudo cryptsetup close encrypted_home
 sudo mount -a
 ```
 
-## Verify:
+### Verify:
 
 To verify if a partition is encrypted, you can examine its header to see if it contains the LUKS (Linux Unified Key Setup) header. This header is a distinctive marker indicating that the partition is encrypted using LUKS.
 You can use the cryptsetup command with the luksDump option to check if a partition contains a LUKS header. Here's how to do it:
@@ -124,7 +129,7 @@ Cipher mode:    xts-plain64
 Hash spec:      sha256
 
 
-## Permission issue:
+### Permission issue:
 
 If you can't write on the disk, you may need permission to the user or group. The below example if the username is pi and the group is pi.
 You can find the current user `whoami` or `id -u -n` and group `groups` and apply the below command.
