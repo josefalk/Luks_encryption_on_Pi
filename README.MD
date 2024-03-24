@@ -19,24 +19,32 @@ sudo apt upgrade
 ```
 
 ### Configure SSH & VNC:
-```sudo raspi-config```
+``
+`sudo raspi-config
+```
 
 ### Check for firmware update:
-```sudo rpi-eepram-update```
+```
+sudo rpi-eepram-update
+```
 
-## edit ```sudo nano /boot/firmware/config.txt```
+## edit `sudo nano /boot/firmware/config.txt`
 
-```dtparam=pciex1```
+`dtparam=pciex1`
 
-```dtparam=pciex1_gen=3```
+`dtparam=pciex1_gen=3`
 
 Or use the below one line command to add the lines:
 
-```sudo grep -q "^dtparam=pciex1" /boot/firmware/config.txt || echo "dtparam=pciex1" | sudo tee -a /boot/firmware/config.txt > /dev/null; sudo grep -q "^dtparam=pciex1_gen=3" /boot/firmware/config.txt || echo "dtparam=pciex1_gen=3" | sudo tee -a /boot/firmware/config.txt > /dev/null```
+```
+sudo grep -q "^dtparam=pciex1" /boot/firmware/config.txt || echo "dtparam=pciex1" | sudo tee -a /boot/firmware/config.txt > /dev/null; sudo grep -q "^dtparam=pciex1_gen=3" /boot/firmware/config.txt || echo "dtparam=pciex1_gen=3" | sudo tee -a /boot/firmware/config.txt > /dev/null
+```
 
 
 ## Install Required Packages:
-```sudo apt-get install cryptsetup```
+```
+sudo apt-get install cryptsetup
+```
 
 ## Partition the NVMe Drive: 
 If the NVMe drive is not already partitioned, you can use a partitioning tool such as fdisk or parted to create partitions on the drive.
