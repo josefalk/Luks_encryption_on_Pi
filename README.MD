@@ -98,12 +98,23 @@ sudo mount /dev/mapper/encrypted_home /mnt/encrypted_home
 
 To automatically mount the encrypted partition on boot, you'll need to add an entry to `/etc/crypttab`:
 
+## Update /etc/cryptab
 ```
 sudo nano /etc/crypttab
 ```
 ```
 /dev/mapper/encrypted_home /home ext4 defaults 0 2
 ```
+
+## Update /etc/fstab:
+Next, you need to update the /etc/fstab file to mount the encrypted partition on boot. Open the file:
+```
+sudo nano /etc/fstab
+```
+```
+/dev/mapper/encrypted_home /home ext4 defaults 0 2
+```
+
 
 ### Unmount and Test:
 ```
