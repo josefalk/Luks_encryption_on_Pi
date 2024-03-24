@@ -160,6 +160,33 @@ Cipher mode:    xts-plain64
 Hash spec:      sha256
 
 
+Check Mount Options:
+First, check the mount options for your home directory to see if it's mounted from an encrypted partition. You can do this by running the mount command:
+
+```
+mount | grep '/home'
+```
+If your home directory is mounted from an encrypted partition, 
+you should see output indicating that it's using a device mapper device (e.g., `/dev/mapper/encrypted_home`).
+
+Check Filesystem Type:
+You can also check the filesystem type of your home directory to verify if it's an encrypted filesystem. Run:
+
+```
+df -T /home
+```
+If the filesystem type is crypt, ext4, or any other encrypted filesystem type, it indicates that your home directory is encrypted.
+
+Check `/etc/fstab` and `/etc/crypttab`:
+Review the /etc/fstab file to see if there's an entry for your home directory that points to an encrypted device. Additionally, check the /etc/crypttab file to verify the mapping name and device associated with the encrypted partition.
+
+Check Encrypted Volume Status:
+You can also check the status of the encrypted volume using cryptsetup. Run:
+```
+sudo cryptsetup status encrypted_home
+```
+
+
 ### Permission issue:
 
 If you can't write on the disk, you may need permission to the user or group. The below example if the username is pi and the group is pi.
