@@ -63,9 +63,14 @@ Create a New Partition: Here are the steps to create a new partition:
 
 Type n and press Enter to create a new partition.
 You'll be asked whether you want to create a primary or extended partition. For a typical setup, choose p for primary.
+
 Next, you'll be prompted to specify the partition number. You can usually accept the default value, which is the next available number.
+
 Then, you'll need to specify the starting and ending sectors for the partition. You can typically accept the default values to use the entire disk.
-After specifying the ending sector, fdisk will confirm the creation of the partition. If everything looks correct, type w and press Enter to write the changes to the disk.
+
+After specifying the ending sector, fdisk will confirm the creation of the partition. 
+
+If everything looks correct, type w and press Enter to write the changes to the disk.
 
 # Find the new created partition:
 ```sudo lsblk```
