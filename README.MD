@@ -19,7 +19,7 @@ sudo apt upgrade
 ```
 
 ### Configure SSH & VNC:
-``
+```
 sudo raspi-config
 ```
 
