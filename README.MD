@@ -10,9 +10,12 @@ Encrypting an NVMe drive on a Raspberry Pi is a good way to protect your data in
 
 To avoid removing the NVMe every time you install PI OS on it, I prepared the SD card, Install PI OS in it, I insert it (Pi will boot from SD by default) and then I can install PI OS on NVMe drive and partition it in the same time.
 
-### Update and remote:
+### Prepare and partition the NVMe:
 
-![alt text](image1.png)
+You can prepare the NVMe from USB reader of course, I will be similar steps.
+
+![Image](image1.png)
+![Image](image2.png)
 
 ### Check for updates:
 ```
@@ -34,7 +37,7 @@ sudo raspi-config
 sudo rpi-eepram-update
 ```
 
-### edit `config.txt`
+### edit `config.txt` to overclock PCIe from Gen2 to Gen3
 
 ```
 sudo nano /boot/firmware/config.txt
@@ -50,6 +53,10 @@ Or use the below one line command to add the lines:
 sudo grep -q "^dtparam=pciex1" /boot/firmware/config.txt || echo "dtparam=pciex1" | sudo tee -a /boot/firmware/config.txt > /dev/null; sudo grep -q "^dtparam=pciex1_gen=3" /boot/firmware/config.txt || echo "dtparam=pciex1_gen=3" | sudo tee -a /boot/firmware/config.txt > /dev/null
 ```
 
+Below is a Benchmark test before/after overclicking the PCIe form Gen2 to Gen3.
+
+![Image](image3.png)
+![Image](image4.png)
 
 ## Install Required Packages:
 ```
