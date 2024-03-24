@@ -114,6 +114,14 @@ sudo nano /etc/fstab
 ```
 /dev/mapper/encrypted_home /home ext4 defaults 0 2
 ```
+## Permission & Create Home directory:
+```
+sudo mkdir pi
+```
+```
+sudo chown pi:pi /home/pi
+```
+Create a file and save it to test permissions.
 
 ### Unmount and Test:
 ```
@@ -125,7 +133,6 @@ sudo cryptsetup close encrypted_home
 ```
 sudo mount -a
 ```
-
 ## Reboot:
 
 You will be asked for the password. if PI stuck on flash screen, press f12 to enter the password.
