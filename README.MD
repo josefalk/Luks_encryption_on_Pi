@@ -199,17 +199,17 @@ Create a key file, Let's say it is on /etc/password
 write the password in it.
 
 ### Edit /etc/crypttab:
-Ensure that the key file is correctly specified in the `/etc/crypttab` file. Open /etc/crypttab and verify that the entry for your encrypted volume specifies the correct key file. It should look something like this:
+Ensure that the key file is correctly specified in the `/etc/crypttab` file. Open `sudo nano /etc/crypttab` and verify that the entry for your encrypted volume specifies the correct key file. It should look something like this:
 
 ```
 encrypted_home  /dev/nvme0n1p3  /etc/password  luks
 ```
 ### Rebuild the Initramfs:
-After making changes to /etc/crypttab, you might need to rebuild the initramfs to apply the changes. You can do this using the following command:
+After making changes to `/etc/crypttab`, you might need to rebuild the initramfs to apply the changes. You can do this using the following command:
 ```
 sudo update-initramfs -u
 ```
-This command rebuilds the initramfs with the updated configuration from /etc/crypttab.
+This command rebuilds the initramfs with the updated configuration from `/etc/crypttab`.
 
 ### Verify Key File Permissions:
 Ensure that the permissions of the key file are set correctly so that it's accessible during boot. The key file should be readable by the root user only. You can set the correct permissions using the following command:
