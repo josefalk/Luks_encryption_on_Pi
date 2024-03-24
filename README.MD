@@ -56,6 +56,10 @@ sudo grep -q "^dtparam=pciex1" /boot/firmware/config.txt || echo "dtparam=pciex1
 ```
 
 Below is a Benchmark test before/after overclicking the PCIe form Gen2 to Gen3.
+Benchmark test using https://pibenchmarks.com/
+```
+sudo curl https://raw.githubusercontent.com/TheRemote/PiBenchmarks/master/Storage.sh | sudo bash
+```
 
 ![Image](image3.png)
 ![Image](image4.png)
