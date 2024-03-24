@@ -17,6 +17,8 @@ You can prepare the NVMe from USB reader of course, I will be similar steps.
 ![Image](image1.png)
 ![Image](image2.png)
 
+After that reboot and remove the SD card, the PI will automatically boot from NVMe.
+
 ### Check for updates:
 ```
 sudo apt update
