@@ -53,7 +53,9 @@ sudo apt-get install cryptsetup
 ## Partition the NVMe Drive: 
 If the NVMe drive is not already partitioned, you can use a partitioning tool such as fdisk or parted to create partitions on the drive.
 
-```sudo fdisk /dev/nvme0n1```
+```
+sudo cryptsetup luksFormat /dev/nvme0n1p3
+```
 
 Run fdisk Command: After running sudo fdisk /dev/nvme0n1, you'll be presented with a command-line interface within fdisk.
 
