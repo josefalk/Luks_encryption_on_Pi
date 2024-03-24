@@ -187,13 +187,40 @@ sudo cryptsetup status encrypted_home
 ```
 
 
-### Permission issue:
+## Key Storage:
 
-If you can't write on the disk, you may need permission to the user or group. The below example if the username is pi and the group is pi.
-You can find the current user `whoami` or `id -u -n` and group `groups` and apply the below command.
+If you want to store the key so you don't enter the password every time:
+
+Create a key file, Let's say it is on /etc/password
+write the password in it.
+
+### Edit /etc/crypttab:
+Ensure that the key file is correctly specified in the `/etc/crypttab` file. Open /etc/crypttab and verify that the entry for your encrypted volume specifies the correct key file. It should look something like this:
 
 ```
-sudo chown pi:pi /mnt/nvme
+encrypted_home  /dev/nvme0n1p3  /root/p  luks
 ```
+### Rebuild the Initramfs:
+After making changes to /etc/crypttab, you might need to rebuild the initramfs to apply the changes. You can do this using the following command:
+```
+sudo update-initramfs -u
+```
+This command rebuilds the initramfs with the updated configuration from /etc/crypttab.
+
+### Verify Key File Permissions:
+Ensure that the permissions of the key file are set correctly so that it's accessible during boot. The key file should be readable by the root user only. You can set the correct permissions using the following command:
+
+```
+sudo chmod 400 /root/p
+```
+### Test Manually (Optional):
+Try manually unlocking the encrypted volume using the key file to see if it works outside of the boot process. You can use the following command:
+```
+sudo cryptsetup luksOpen --key-file /root/p /dev/nvme0n1p3 encrypted_home
+```
+If this command successfully unlocks the volume, then the key file is valid, and the issue may lie in the boot process configuration.
+
+
+
 
 
