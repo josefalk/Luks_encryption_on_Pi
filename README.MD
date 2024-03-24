@@ -9,16 +9,17 @@ Encrypting an NVMe drive on a Raspberry Pi is a good way to protect your data in
 ## Update and remote:
 
 ### Check for updates:
-`apt update`
+```
+sudo apt update```
 
 ### Check for upgrades:
-`apt upgrade`
+`sudo apt upgrade`
 
 ### Configure SSH & VNC:
-`raspi-config`
+`sudo raspi-config`
 
 ### Check for firmware update:
-`rpi-eepram-update`
+`sudo rpi-eepram-update`
 
 ## edit `sudo nano /boot/firmware/config.txt`
 
@@ -32,7 +33,7 @@ Or use the below one line command to add the lines:
 
 
 ## Install Required Packages:
-`apt-get install cryptsetup`
+`sudo apt-get install cryptsetup`
 
 ## Partition the NVMe Drive: 
 If the NVMe drive is not already partitioned, you can use a partitioning tool such as fdisk or parted to create partitions on the drive.
