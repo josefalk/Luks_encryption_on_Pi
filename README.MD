@@ -12,6 +12,7 @@ To avoid removing the NVMe every time you install PI OS on it, I prepared the SD
 
 ### Update and remote:
 
+![alt text](image1.png)
 
 ### Check for updates:
 ```
