@@ -115,7 +115,6 @@ sudo nano /etc/fstab
 /dev/mapper/encrypted_home /home ext4 defaults 0 2
 ```
 
-
 ### Unmount and Test:
 ```
 sudo umount /mnt/encrypted_home
@@ -126,6 +125,10 @@ sudo cryptsetup close encrypted_home
 ```
 sudo mount -a
 ```
+
+## Reboot:
+
+You will be asked for the password. if PI stuck on flash screen, press f12 to enter the password.
 
 ### Verify:
 
