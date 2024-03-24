@@ -22,8 +22,12 @@ Encrypting an NVMe drive on a Raspberry Pi is a good way to protect your data in
 
 ## edit `sudo nano /boot/firmware/config.txt`
 
-dtparam=pciex1
-dtparam=pciex1_gen=3
+`dtparam=pciex1`
+`dtparam=pciex1_gen=3`
+
+Or use the below one line command to add the lines:
+
+`sudo grep -q "^dtparam=pciex1" /boot/firmware/config.txt || echo "dtparam=pciex1" | sudo tee -a /boot/firmware/config.txt > /dev/null; sudo grep -q "^dtparam=pciex1_gen=3" /boot/firmware/config.txt || echo "dtparam=pciex1_gen=3" | sudo tee -a /boot/firmware/config.txt > /dev/null`
 
 
 ## Install Required Packages:
