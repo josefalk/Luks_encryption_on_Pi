@@ -14,7 +14,7 @@ To avoid removing the NVMe every time you install PI OS on it, I prepared the SD
 
 You can prepare the NVMe from USB reader of course, I will be similar steps.
 
-PHotos show comparison before and after overclocking the PCIe form Gen2 to Gen3.
+
 
 ![Image](image1.png)
 ![Image](image2.png)
@@ -62,6 +62,7 @@ Benchmark test using https://pibenchmarks.com/
 ```
 sudo curl https://raw.githubusercontent.com/TheRemote/PiBenchmarks/master/Storage.sh | sudo bash
 ```
+Photos show comparison before and after overclocking the PCIe form Gen2 to Gen3.
 
 ![Image](image3.png)
 ![Image](image4.png)
