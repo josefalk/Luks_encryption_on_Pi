@@ -12,7 +12,7 @@ To avoid removing the NVMe every time you install PI OS on it, I prepared the SD
 
 ### Prepare and partition the NVMe:
 
-You can prepare the NVMe from USB reader of course, I will be similar steps.
+You can prepare the NVMe from USB reader of course, It will be similar steps.
 
 
 
