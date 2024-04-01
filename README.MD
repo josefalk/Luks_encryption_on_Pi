@@ -233,7 +233,8 @@ sudo update-initramfs -u
 ```
 This command rebuilds the initramfs with the updated configuration from `/etc/crypttab`.
 
-### Reload systemd to apply the changes:
+### Ensure Proper Systemd Reload:
+After modifying fstab, reload systemd to ensure that it reads the updated configuration:
 ```
 sudo systemctl daemon-reload
 ```
@@ -250,8 +251,3 @@ Try manually unlocking the encrypted volume using the key file to see if it work
 sudo cryptsetup luksOpen --key-file /etc/password /dev/nvme0n1p3 encrypted_home
 ```
 If this command successfully unlocks the volume, then the key file is valid, and the issue may lie in the boot process configuration.
-
-
-
-
-
