@@ -201,18 +201,42 @@ If you want to store the key so you don't enter the password every time:
 Create a key file, Let's say it is on /etc/password
 write the password in it.
 
-### Edit /etc/crypttab:
-Ensure that the key file is correctly specified in the `/etc/crypttab` file. Open `sudo nano /etc/crypttab` and verify that the entry for your encrypted volume specifies the correct key file. It should look something like this:
+### Create a Key File:
+Generate a key file containing the passphrase. You can do this using the echo command:
 
 ```
-encrypted_home  /dev/nvme0n1p3  /etc/password  luks
+echo -n "YOUR_PASSPHRASE" > /path/to/keyfile
 ```
+Replace "YOUR_PASSPHRASE" with your actual passphrase and /path/to/keyfile with the desired location and filename for the key file.
+
+### Add Key to LUKS-encrypted Volume:
+Add the key file to the LUKS-encrypted volume using the cryptsetup luksAddKey command:
+
+```
+sudo cryptsetup luksAddKey /dev/nvme0n1p3 /path/to/keyfile
+```
+Replace /dev/nvme0n1p3 with the actual device path of your LUKS-encrypted volume.
+
+### Update /etc/crypttab:
+Edit the /etc/crypttab file to specify the key file for unlocking the encrypted volume during boot. Add a line like this:
+
+```
+encrypted_home  /dev/nvme0n1p3  /path/to/keyfile  luks
+```
+Replace /dev/nvme0n1p3 with the actual device path of your LUKS-encrypted volume and /path/to/keyfile with the path to the key file you created.
+
+
 ### Rebuild the Initramfs:
 After making changes to `/etc/crypttab`, you might need to rebuild the initramfs to apply the changes. You can do this using the following command:
 ```
 sudo update-initramfs -u
 ```
 This command rebuilds the initramfs with the updated configuration from `/etc/crypttab`.
+
+### Reload systemd to apply the changes:
+```
+sudo systemctl daemon-reload
+```
 
 ### Verify Key File Permissions:
 Ensure that the permissions of the key file are set correctly so that it's accessible during boot. The key file should be readable by the root user only. You can set the correct permissions using the following command:
